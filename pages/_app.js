@@ -1,7 +1,17 @@
 import '../styles/globals.css'
+import { ChakraProvider } from "@chakra-ui/react";
+
+import "@fontsource/raleway";
+import "@fontsource/open-sans";
+
+import theme from "../theme";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <ChakraProvider theme={theme}>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  );
 }
 
 export default MyApp

@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex } from "@chakra-ui/react";
 
-import Coin from "../Coin";
-import Microwave from "../Microwave";
+import Coin from "../../components/Coin";
+import Microwave from "../../components/Microwave";
 
 const CoinDrop = () => {
+    const [audio] = useState(typeof Audio !== "undefined" && new Audio("/coin-drop.mp3"));
+
+    const handleDrop = (item, dropResult) => {
+        audio.play();
+        alert(`You dropped ${item.name} into ${dropResult.name}!`);
+    };
 
     return (
         <Flex
@@ -16,7 +22,7 @@ const CoinDrop = () => {
             mx={{base: 0, md: 12}}
             px={{base: 0, md: 12}}
         >
-            <Coin />
+            <Coin onDrop={handleDrop} />
             <Microwave />
         </Flex>
     );

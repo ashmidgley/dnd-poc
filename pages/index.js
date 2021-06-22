@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Button, Box, Heading } from "@chakra-ui/react";
 
-import CoinDrop from '../components/CoinDrop';
+import CoinDrop from '../games/CoinDrop';
 
 const Home = () => {
 

@@ -1,35 +1,44 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Image } from "@chakra-ui/react";
-import { DragSource } from 'react-dnd';
+import { useDrag } from 'react-dnd';
 
 import { ItemTypes } from '../../ItemTypes';
 
-const Coin = ({isDragging, connectDragSource}) => (
-    <Image
-        ref={connectDragSource}
-        src="/dollar.jpg"
-        height={{base: "50px", md: "100px"}}
-        cursor='move'
-        opacity={isDragging ? "0" : "1"}
-        role="Coin"
-    />
-);
+const Coin = ({onDrop}) => {
 
-export default DragSource(ItemTypes.COIN, {
-    beginDrag: (props) => {
-        return { name: props.name };
-    },
-    endDrag(props, monitor) {
-        const item = monitor.getItem();
-        const dropResult = monitor.getDropResult();
-        if (dropResult) {
-            new Audio('/coin-drop.mp3').play();
-            alert(`You dropped ${item.name} into ${dropResult.name}!`);
-        }
-    },
-}, (connect, monitor) => {
-    return {
-        connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging(),
-    };
-})(Coin);
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: ItemTypes.COIN,
+        item: { name: "Coin" },
+        end: (item, monitor) => {
+            const dropResult = monitor.getDropResult();
+            if (item && dropResult) {
+                onDrop(item, dropResult);
+            }
+        },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+            handlerId: monitor.getHandlerId(),
+        }),
+    }));
+
+    return (
+        <Image
+            ref={drag}
+            src="/dollar.jpg"
+            height={{base: "50px", md: "100px"}}
+            cursor='move'
+            opacity={isDragging ? "0" : "1"}
+            role="Coin"
+        />
+    );
+};
+
+Coin.propTypes = {
+    onDrop: PropTypes.func,
+};
+Coin.defaultProps = {
+    onDrop: () => {},
+};
+
+export default Coin;

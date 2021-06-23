@@ -1,26 +1,22 @@
 import Head from 'next/head'
-import { Button, Box, Heading } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import CoinDrop from '../games/CoinDrop';
+import ISpy from "../games/ISpy";
 
-const Home = () => {
-
-  return (
-    <>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Box m={6}>
-        <Heading mb={3}>ERANZ POC</Heading>
-        <Button>
-          Testing 1 2, 1 2
-        </Button>
-      </Box>
+const Home = () => (
+  <>
+    <Head>
+      <title>Create Next App</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <Flex justifyContent="space-between" alignItems="center" my={12} >
       <CoinDrop />
-    </>
-  );
-}
-
+    </Flex>
+    <Flex justifyContent="space-between" alignItems="center" my={12}>
+      <ISpy />
+    </Flex>
+  </>
+);
 
 export default Home;

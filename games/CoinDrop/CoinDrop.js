@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import Coin from "../../components/Coin";
 import Microwave from "../../components/Microwave";
@@ -13,21 +13,18 @@ const CoinDrop = () => {
     };
 
     return (
-        <>
-            <Heading ml={6}>Coin Drop</Heading>
-            <Flex
-                minHeight="500px"
-                minWidth="80%"
-                border="1px black solid"
-                borderRadius={12}
-                justifyContent="space-between"
-                alignItems="center"
-                px={{base: 0, md: 12}}
-            >
-                <Coin onDrop={handleDrop} />
-                <Microwave />
-            </Flex>
-        </>
+        <Flex
+            minHeight="500px"
+            border="3px black solid"
+            borderRadius={12}
+            justifyContent="space-between"
+            alignItems="center"
+            px={{base: 3, sm: 12}}
+            my={{base: 3, sm: 6}}
+        >
+            <Coin onDrop={handleDrop} />
+            <Microwave />
+        </Flex>
     );
 }
 

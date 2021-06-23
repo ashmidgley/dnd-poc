@@ -22,7 +22,7 @@ const Microwave = () => {
             height={{base: "100px", md: "200px"}}
             role="Microwave"
             transition="all 150ms ease-out"
-            transform={canDrop && isOver && "scale(1.25)" }
+            transform={canDrop && isOver && {base: "scale(1.125)", sm: "scale(1.25)"}}
         />
     );
 };

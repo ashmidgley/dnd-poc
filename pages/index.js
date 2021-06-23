@@ -10,10 +10,8 @@ const Home = () => (
       <title>Create Next App</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Flex justifyContent="space-between" alignItems="center" my={12} >
+    <Flex justifyContent="center" flexDirection="column" mx={{base: 2, sm: 12}}>
       <CoinDrop />
-    </Flex>
-    <Flex justifyContent="space-between" alignItems="center" my={12}>
       <ISpy />
     </Flex>
   </>

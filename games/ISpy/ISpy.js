@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Flex, Heading, Box } from "@chakra-ui/react";
+import { Flex, Box, Fade } from "@chakra-ui/react";
 
 import WorldCountries from "../../components/WorldCountries";
 import AfricaCountries from "../../components/AfricaCountries";
@@ -24,27 +24,26 @@ const ISpy = () => {
     }
 
     return (
-        <>
-            <Heading ml={6}>I Spy</Heading>
-            <Flex
-                minHeight="500px"
-                minWidth="80%"
-                border="1px black solid"
-                borderRadius={12}
-                justifyContent="center"
-                alignItems="center"
-                px={{base: 0, md: 12}}
-            >
-                {showAfrica ?
-                    <Box position="relative">
+        <Flex
+            minHeight="500px"
+            border="3px black solid"
+            borderRadius={12}
+            justifyContent="center"
+            alignItems="center"
+            px={{base: 3, sm: 12}}
+            my={{base: 3, sm: 6}}
+        >
+            {showAfrica ?
+                <Box position="relative">
+                    <Fade in>
                         <AfricaCountries height={"400px"} width={"100%"} onItemClick={handleItemClick} zambiaRef={zambiaRef} />
                         <ArrowRight position="absolute" top="0" right="0" fontSize={"32px"} cursor="pointer" onClick={handleArrowClick} />
-                    </Box>
-                    :
-                    <WorldCountries height={"100%"} width={"700px"} onAfricaClick={handleAfricaClick} />
-                }
-            </Flex>
-        </>
+                    </Fade>
+                </Box>
+                :
+                <WorldCountries height={"100%"} width={"700px"} onAfricaClick={handleAfricaClick} />
+            }
+        </Flex>
     );
 };
 
